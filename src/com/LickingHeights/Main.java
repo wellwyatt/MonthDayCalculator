@@ -1,9 +1,10 @@
 package com.LickingHeights;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int userDay, userMonth, userYear, K;
+        int userDay, userMonth, userYear, K, J, q, m, W, h  ;
 
         Scanner keyboard = new Scanner(System.in);
         System.out.println("What is the date of your Birth?");
