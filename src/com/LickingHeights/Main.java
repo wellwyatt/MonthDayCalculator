@@ -33,10 +33,10 @@ public class Main {
             J = k / 100;
 
             W = 13 * (m + 1) / 5;
-            h = (q + W + K + (K / 4) + (J / 4) + 5 * J) % 7;
+            h = (q + W + K + (K / 4) + (J / 4) - 2 * J) % 7;
+
 
             System.out.println(h);
-            System.out.println(dayOfTheWeekCalculator(h));
         }
     }
 
@@ -66,15 +66,15 @@ public class Main {
             case 1:
                 return "Sunday's child, born on Sabbath Day, is fair and wise and good in every way. ";
             case 2:
-                return "Monday's child is fair of face.";
+                return "Monday's ";
             case 3:
-                return "Tuesday's child is full of grace.";
+                return "Tuesday's ";
             case 4:
-                return "Wednesday's child is full of woe.";
+                return "Wednesday's ";
             case 5:
-                return "Thursday's child has far to go.";
+                return "Thursday's ";
             case 6:
-                return "Friday's child is loving and giving.";
+                return "Friday's ";
         }
 
         return null;
