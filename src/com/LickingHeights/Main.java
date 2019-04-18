@@ -1,10 +1,11 @@
+
 package com.LickingHeights;
 
-import java.util.Scanner;
+        import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int userDay, userMonth, userYear, K, J, q, m, W, h, k;
+        int userDay, userMonth, userYear, userYearMod100, userYearDiv100, q, m, Zeller, h, k;
 
         Scanner keyboard = new Scanner(System.in);
 
@@ -12,6 +13,7 @@ public class Main {
             System.out.println("What is the month of your Birthday (as a number)");
             userMonth = keyboard.nextInt();
             m = userMonth;
+
 
             System.out.println("What is the date of your Birth?");
             userDay = keyboard.nextInt();
@@ -21,29 +23,26 @@ public class Main {
             userYear = keyboard.nextInt();
             k = userYear;
 
-
             k = yearCalculator(k, m);
 
             m = monthCalculator(m);
 
             q = userDay;
 
-            K = k % 100;
+            userYearMod100 = k % 100;
 
-            J = k / 100;
+            userYearDiv100 = k / 100;
 
-            W = 13 * (m + 1) / 5;
-            h = (q + W + K + (K / 4) + (J / 4) - 2 * J) % 7;
+            Zeller = 13 * (m + 1) / 5;
+            h = (q + Zeller + userYearMod100 + (userYearMod100 / 4) + (userYearDiv100 / 4) + 5 * userYearDiv100) % 7;
 
-
-            System.out.println(h);
+            // System.out.println(h);
+            System.out.println(nurseryRhyme(h));
         }
     }
 
     public static int monthCalculator(int userMonth) {
-        if (userMonth == 1) {
-            return userMonth + 12;
-        } else if (userMonth == 2) {
+        if (userMonth <=2) {
             return userMonth + 12;
         }
         return userMonth;
@@ -59,26 +58,29 @@ public class Main {
 
     }
 
-    public static String dayOfTheWeekCalculator(int h) {
+    public static String nurseryRhyme(int h) {
         switch (h) {
             case 0:
                 return "Saturday's child works hard for a living. ";
             case 1:
                 return "Sunday's child, born on Sabbath Day, is fair and wise and good in every way. ";
             case 2:
-                return "Monday's ";
+                return "Monday's child is fair of face.";
             case 3:
-                return "Tuesday's ";
+                return "Tuesday's child is full of grace.";
             case 4:
-                return "Wednesday's ";
+                return "Wednesday's child is full of woe.";
             case 5:
-                return "Thursday's ";
+                return "Thursday's child has far to go.";
             case 6:
-                return "Friday's ";
+                return "Friday's child is loving and giving.";
+            default:
+                return "Couldn't find the line.";
         }
 
-        return null;
+
+
+
     }
 
 }
-
