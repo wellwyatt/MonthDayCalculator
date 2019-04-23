@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int userDay, userMonth, userYear, userYearMod100, userYearDiv100, q, Zeller, h;
+        int userDay, userMonth, userYear, userYearMod100, userYearDiv100, Zeller, h = 0;
 
         Scanner keyboard = new Scanner(System.in);
 
         while (true) {
-            System.out.println("What is the month of your Birthday (as a number)");
+            long color = Math.round(100 * Math.random());
+            System.out.println(colorGen(color) + "What is the month of your Birthday (as a number)");
             userMonth = keyboard.nextInt();
-
 
 
             System.out.println("What is the date of your Birth?");
@@ -27,19 +27,21 @@ public class Main {
 
             userMonth = monthCalculator(userMonth);
 
-            q = userDay;
-
             userYearMod100 = userYear % 100;
 
             userYearDiv100 = userYear / 100;
 
             Zeller = 13 * (userMonth + 1) / 5;
-            h = (q + Zeller + userYearMod100 + (userYearMod100 / 4) + (userYearDiv100 / 4) + 5 * userYearDiv100) % 7;
-
-            //System.out.println(m);
-            System.out.println(nurseryRhyme(h));
+            System.out.println(nurseryRhyme(ZellerCal(userDay, Zeller, userYearMod100, userYearDiv100, h)));
             System.out.println(numOfDays(userMonth));
         }
+
+    }
+
+
+    public static int ZellerCal(int userDay, int Zeller, int userYearMod100, int userYearDiv100, int h) {
+
+        return h = (userDay + Zeller + userYearMod100 + (userYearMod100 / 4) + (userYearDiv100 / 4) + 5 * userYearDiv100) % 7;
     }
 
     public static String numOfDays(int userMonth) {
@@ -73,7 +75,6 @@ public class Main {
         }
 
     }
-
 
     public static int monthCalculator(int userMonth) {
         if (userMonth <= 2) {
@@ -115,5 +116,41 @@ public class Main {
 
     }
 
+    public static String colorGen(long color) {
+
+        if (color <= 10 && color >= 1) {
+            return ("\u001B[31m");
+        }
+        if (color <= 20 && color >= 11) {
+            return ("\u001B[32m");
+        }
+        if (color <= 30 && color >= 21) {
+            return ("\u001B[33m");
+        }
+        if (color <= 40 && color >= 31) {
+            return ("\u001B[34m");
+        }
+        if (color <= 50 && color >= 41) {
+            return ("\u001B[35m");
+        }
+        if (color <= 60 && color >= 51) {
+            return ("\033[1;97m");
+        }
+        if (color <= 70 && color >= 61) {
+            return ("\u001B[36m");
+        }
+        if (color <= 80 && color >= 71) {
+            return ("\033[1;95m");
+        }
+        if (color <= 90 && color >= 80) {
+            return ("\033[1;96m");
+        }
+        if (color <= 100 && color >= 91) {
+            return ("\033[1;97m");
+        }
+
+
+        return "\u001B[0m";
+    }
 }
 
