@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int userDay, userMonth, userYear, userYearMod100, userYearDiv100, Zeller, h = 0;
+        int userDay, userMonth, userYear, userYearMod100, userYearDiv100, Zeller, h = 0, userYearCal;
 
         Scanner keyboard = new Scanner(System.in);
 
@@ -23,18 +23,19 @@ public class Main {
             userYear = keyboard.nextInt();
 
 
-            userYear = yearCalculator(userYear, userMonth);
+            userYearCal = yearCalculator(userYear, userMonth);
 
             userMonth = monthCalculator(userMonth);
 
-            userYearMod100 = userYear % 100;
+            userYearMod100 = userYearCal % 100;
 
-            userYearDiv100 = userYear / 100;
+            userYearDiv100 = userYearCal / 100;
 
             Zeller = 13 * (userMonth + 1) / 5;
             System.out.println(nurseryRhyme(ZellerCal(userDay, Zeller, userYearMod100, userYearDiv100, h)));
-            System.out.println(numOfDays(userMonth));
+            System.out.println(numOfDays(userMonth, userYear));
         }
+
 
     }
 
@@ -44,12 +45,22 @@ public class Main {
         return h = (userDay + Zeller + userYearMod100 + (userYearMod100 / 4) + (userYearDiv100 / 4) + 5 * userYearDiv100) % 7;
     }
 
-    public static String numOfDays(int userMonth) {
+    public static String numOfDays(int userMonth, int userYear) {
         switch (userMonth) {
             case 13:
                 return "In January there are 31 days";
             case 14:
-                return "In February there are 28 days (29 days during leap year) ";
+                if (userYear % 400 == 0) {
+                    System.out.println("In February there are 29 days");
+                } else if (userYear % 100 == 0){
+                    System.out.println("In February there are 28 days");
+                }
+                else if (userYear % 4 == 0) {
+                System.out.println("In February there are 29 days ");
+            } else {
+                System.out.println("In February there are 28 days");
+            }
+                break;
             case 3:
                 return "In March there are 31 days.";
             case 4:
@@ -71,8 +82,10 @@ public class Main {
             case 12:
                 return "in December there are 31 days.";
             default:
-                return "Please enter a month." + (userMonth);
+                return "Please enter a month.";
         }
+
+        return "thank you!";
 
     }
 
@@ -150,7 +163,7 @@ public class Main {
         }
 
 
-        return "\u001B[0m";
+        return "\u001B[0m"; //reset colors
     }
 }
 
